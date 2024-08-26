@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding-top: 80px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        header.navbar {
+            width: 100%;
+            background-color: #343a40;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            left: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        header.navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+        header.navbar a:hover {
+            color: #ffc107;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #495057;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label.custom-file-upload {
+            padding: 12px 25px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #343a40;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        label.custom-file-upload:hover {
+            background-color: #495057;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #343a40;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #495057;
+        }
+        #blocks {
+            margin-top: 30px;
+        }
+        .block {
+            background-color: #ffffff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .block img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .block h2 {
+            margin-bottom: 10px;
+            color: #343a40;
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+        .block p {
+            color: #495057;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        .block .delete-button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .block .delete-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+    <title>Microblog</title>
+</head>
+<body>
+    <header class="navbar">
+        <a href="{{ url_for('profile_index') }}">Profile Diri</a>
+        <a href="{{ url_for('microblog_index') }}">Micro Blog</a>
+        <a href="{{ url_for('sertifikat_index') }}">Upload Sertifikat</a>
+        <a href="{{ url_for('portfolio_index') }}">Portfolio</a>
+        <a href="{{ url_for('chatbot_index') }}">Chat with Gemini</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    </header>
+
+    <div class="container">
+        <h1>Microblog</h1>
+        
+        <!-- <form method="POST" action="{{ url_for('microblog_add_block') }}" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Post Title" required>
+            <label class="custom-file-upload">
+                <input type="file" name="image" accept="image/*">
+                Choose File
+            </label>
+            <textarea name="content" placeholder="What's on your mind?" rows="4" required></textarea>
+            <button type="submit">Post</button>
+        </form> -->
+    
+        <div id="blocks">
+            {% for block in blocks %}
+                <div class="block">
+                    {% if block.image_url %}
+                        <img src="{{ block.image_url }}" alt="Image">
+                    {% endif %}
+                    <h2>{{ block.title }}</h2>
+                    <p>{{ block.content }}</p>
+                    <!-- <form method="POST" action="{{ url_for('microblog_delete_block', block_id=block['id']) }}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form> -->
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

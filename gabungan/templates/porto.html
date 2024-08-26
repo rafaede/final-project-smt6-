@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .container {
+            padding: 0 15px;
+        }
+
+        header.navbar {
+            width: 100%;
+            background-color: #444;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header.navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+
+        header.navbar a:hover {
+            color: #ddd;
+        }
+
+        /* Project Section */
+        .project-section {
+            padding: 150px 20px 100px;
+            background-color: #2c2c2c;
+            min-height: 100vh;
+        }
+
+        .project-heading {
+            font-size: 50px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #e0e0e0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 40px;
+            padding: 0 20px;
+        }
+
+        .project-card {
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover .project-img {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 20px;
+            opacity: 0.95;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .project-info {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+            color: #ccc;
+        }
+
+        .project-btn-grp {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .project-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .project-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="{{ url_for('profile_index') }}">Profile Diri</a>
+        <a href="{{ url_for('microblog_index') }}">Micro Blog</a>
+        <a href="{{ url_for('sertifikat_index') }}">Upload Sertifikat</a>
+        <a href="{{ url_for('portfolio_index') }}">Portfolio</a>
+        <a href="{{ url_for('chatbot_index') }}">Chat with Gemini</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    </header>
+
+    <div class="container">
+        {% block content %}
+        <!-- Content akan disini -->
+        {% endblock %}
+    </div>
+
+    <section class="project-section">
+        <h1 class="project-heading">Some of My Projects</h1>
+        <div class="project-container">
+            <div class="project-card">
+                <img src="https://www.pixel4k.com/wp-content/uploads/2023/08/stains-bubbles-liquid-texture-abstraction-4k_1691589483-300x200.jpg.webp" class="project-img" alt="Screenshot of Project 01">
+                <div class="project-content">
+                    <h2 class="project-title">Project 01</h2>
+                    <p class="project-info">
+                        Final project software engineer adalah kesempatan untuk menunjukkan keahlian yang telah diperoleh sepanjang program studi. Proyek ini mencakup perancangan, pengembangan, dan implementasi solusi teknologi yang inovatif. Tujuannya adalah untuk memecahkan masalah dunia nyata atau menciptakan aplikasi yang fungsional dan efektif, dengan mengaplikasikan prinsip-prinsip rekayasa perangkat lunak yang telah dipelajari.
+                    </p>
+                    <div class="project-btn-grp">
+                        <a href="https://github.com/rafaed/AgroStore" class="project-btn github">GitHub Repo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://www.pixel4k.com/wp-content/uploads/2023/08/stains-bubbles-liquid-texture-abstraction-4k_1691589483-300x200.jpg.webp" class="project-img" alt="Screenshot of Project 02">
+                <div class="project-content">
+                    <h2 class="project-title">Project 02</h2>
+                    <p class="project-info">
+                        Jika ingin mengetahui lebih lanjut, silakan kunjungi link GitHub saya. Di sana, Anda bisa menemukan banyak detail proyek dan kode sumbernya.
+                    </p>
+                    <div class="project-btn-grp">
+                        <a href="https://github.com/rafaede" class="project-btn github">GitHub Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
